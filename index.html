@@ -654,10 +654,28 @@
                 <p>Coastal Preppy. Polished, classic, and slightly elevated — but not overly formal. Think East Coast prep softened for a celebratory evening by the ocean. The ceremony will be outdoors on our oceanfront deck, so plan for the temperature.</p>
             </div>
 
-            <div class="info-box">
+            <div class="info-box" id="song-request">
                 <h3>Request a Song</h3>
                 <p style="margin-bottom: 1.5rem;">Help us build the ultimate reception playlist! Drop a song or two that will get you on the dance floor.</p>
-                <a href="mailto:td.akre@gmail.com,everett.toby@gmail.com?subject=Song%20Request%20for%20the%20Akrett%20Wedding" class="btn">Submit a Song</a>
+                <form id="song-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Your Name</label>
+                        <input type="text" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="First & Last Name">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Song Title</label>
+                        <input type="text" name="song" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Song name">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Artist</label>
+                        <input type="text" name="artist" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Artist name (optional)">
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Submit Song</button>
+                    </div>
+                </form>
+                <p id="song-success" style="display: none; margin-top: 1.5rem; color: #8b7d77; font-family: 'Montserrat', sans-serif; font-weight: 300;">Thank you! Your song has been added to our playlist. 🎶</p>
+                <p id="song-error" style="display: none; margin-top: 1.5rem; color: #c27070; font-family: 'Montserrat', sans-serif; font-weight: 300;">Something went wrong — please try again or email us directly.</p>
             </div>
         </div>
     </section>
@@ -821,6 +839,36 @@
     </footer>
 
     <script>
+        const SONG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAmln-zxgYIKaaLgSWF507Kk9U3q7xZ7VjE-iUrajP6WNG_EfVpbPCoMdTOFvwcg9ICQ/exec';
+
+        document.getElementById('song-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var form = this;
+            var btn = form.querySelector('button');
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            var data = {
+                name: form.name.value,
+                song: form.song.value,
+                artist: form.artist.value
+            };
+
+            fetch(SONG_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(function() {
+                form.style.display = 'none';
+                document.getElementById('song-success').style.display = 'block';
+            }).catch(function() {
+                document.getElementById('song-error').style.display = 'block';
+                btn.textContent = 'Submit Song';
+                btn.disabled = false;
+            });
+        });
+
         // Active nav link on scroll
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.nav-link');
