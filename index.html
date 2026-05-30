@@ -565,11 +565,11 @@
         <div class="nav-logo">T & T</div>
         <div class="nav-links">
             <a href="#home" class="nav-link active">Home</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
             <a href="#details" class="nav-link">Details</a>
             <a href="#travel" class="nav-link">Travel</a>
             <a href="#explore" class="nav-link">Explore</a>
             <a href="#faq" class="nav-link">FAQ</a>
-            <a href="#rsvp" class="nav-link">RSVP</a>
         </div>
     </nav>
 
@@ -600,6 +600,50 @@
                     <div class="time-block-time">Oct 25</div>
                     <div class="time-block-label">Recover</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="section-alt">
+        <div class="container-narrow">
+            <h2>RSVP</h2>
+            <p class="section-intro">
+                Formal invitations are on the way, but if you already know you're coming, we'd love to hear from you early! You can also update your response later.
+            </p>
+
+            <div class="info-box" id="rsvp-box">
+                <form id="rsvp-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Your Name</label>
+                        <input type="text" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="First & Last Name">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Will you be attending?</label>
+                        <select name="attending" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;">
+                            <option value="">Select one</option>
+                            <option value="Yes">Yes — can't wait!</option>
+                            <option value="No">Sadly, I can't make it</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Plus One Name (if applicable)</label>
+                        <input type="text" name="plusone" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Guest name (optional)">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Dietary Restrictions</label>
+                        <input type="text" name="dietary" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Any allergies or dietary needs (optional)">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Notes</label>
+                        <textarea name="notes" rows="3" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none; resize: vertical;" placeholder="Anything else you'd like us to know (optional)"></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Submit RSVP</button>
+                    </div>
+                </form>
+                <p id="rsvp-success" style="display: none; margin-top: 1.5rem; color: #8b7d77; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem;">We got your RSVP — thank you! We can't wait to celebrate with you. 🤍</p>
+                <p id="rsvp-error" style="display: none; margin-top: 1.5rem; color: #c27070; font-family: 'Montserrat', sans-serif; font-weight: 300;">Something went wrong — please try again or email us directly.</p>
             </div>
         </div>
     </section>
@@ -963,50 +1007,6 @@
                 <h3>Still have questions?</h3>
                 <p style="margin-bottom: 1.5rem;">We're here to help! Feel free to reach out to us directly.</p>
                 <a href="mailto:td.akre@gmail.com,everett.toby@gmail.com" class="btn">Contact Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp">
-        <div class="container-narrow">
-            <h2>RSVP</h2>
-            <p class="section-intro">
-                Formal invitations are on the way, but if you already know you're coming, we'd love to hear from you early! You can also update your response later.
-            </p>
-
-            <div class="info-box" id="rsvp-box">
-                <form id="rsvp-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Your Name</label>
-                        <input type="text" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="First & Last Name">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Will you be attending?</label>
-                        <select name="attending" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;">
-                            <option value="">Select one</option>
-                            <option value="Yes">Yes — can't wait!</option>
-                            <option value="No">Sadly, I can't make it</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Plus One Name (if applicable)</label>
-                        <input type="text" name="plusone" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Guest name (optional)">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Dietary Restrictions</label>
-                        <input type="text" name="dietary" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Any allergies or dietary needs (optional)">
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Notes</label>
-                        <textarea name="notes" rows="3" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none; resize: vertical;" placeholder="Anything else you'd like us to know (optional)"></textarea>
-                    </div>
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn">Submit RSVP</button>
-                    </div>
-                </form>
-                <p id="rsvp-success" style="display: none; margin-top: 1.5rem; color: #8b7d77; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem;">We got your RSVP — thank you! We can't wait to celebrate with you. 🤍</p>
-                <p id="rsvp-error" style="display: none; margin-top: 1.5rem; color: #c27070; font-family: 'Montserrat', sans-serif; font-weight: 300;">Something went wrong — please try again or email us directly.</p>
             </div>
         </div>
     </section>
