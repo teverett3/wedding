@@ -534,6 +534,16 @@
             }
         }
         
+        .grid-dining {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        @media (max-width: 1024px) {
+            .grid-dining {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -555,6 +565,10 @@
             
             section {
                 padding: 4rem 1rem;
+            }
+            
+            .grid-dining {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -879,7 +893,7 @@
             </div>
 
             <h3 style="text-align: center; font-size: 1.6rem; font-weight: 400; color: #8b7d77; margin-bottom: 2rem;">Dining</h3>
-            <div class="grid grid-3" style="margin-bottom: 3rem;">
+            <div class="grid grid-3 grid-dining" style="margin-bottom: 3rem;">
                 <div class="explore-card">
                     <div class="explore-category">Bridgehampton</div>
                     <h3>Almond</h3>
@@ -896,9 +910,19 @@
                     <p class="card-description">Italian coastal cuisine from the team behind Manhattan's Il Buco. Fresh pasta, seafood, and a chic beachy setting.</p>
                 </div>
                 <div class="explore-card">
-                    <div class="explore-category">Montauk</div>
+                    <div class="explore-category">Amagansett</div>
                     <h3>Rosie's</h3>
-                    <p class="card-description">Lively Montauk spot with a great outdoor scene, creative cocktails, and a fun, social atmosphere. Perfect for a casual night out.</p>
+                    <p class="card-description">Lively spot with a great outdoor scene, creative cocktails, and a fun, social atmosphere. Very close to Montauk — perfect for a casual night out.</p>
+                </div>
+                <div class="explore-card">
+                    <div class="explore-category">Montauk</div>
+                    <h3>Inlet Seafood</h3>
+                    <p class="card-description">A Montauk classic for impeccably fresh seafood — lobster, clams, and the catch of the day. Casual, unfussy, and exactly what you want by the water.</p>
+                </div>
+                <div class="explore-card">
+                    <div class="explore-category">Montauk</div>
+                    <h3>Shagwong Tavern</h3>
+                    <p class="card-description">An iconic Montauk institution and local favorite for decades. Relaxed pub fare, burgers, and cold drinks in the heart of town.</p>
                 </div>
                 <div class="explore-card">
                     <div class="explore-category">Sag Harbor</div>
