@@ -1,0 +1,30 @@
+name: Update wedding photos
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-photos:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch iCloud album
+        run: node scripts/fetch-icloud-photos.js
+
+      - name: Commit photos.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update wedding photos from iCloud album
+          file_pattern: photos.json

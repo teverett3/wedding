@@ -1352,7 +1352,7 @@
     <script>
         const SONG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAmln-zxgYIKaaLgSWF507Kk9U3q7xZ7VjE-iUrajP6WNG_EfVpbPCoMdTOFvwcg9ICQ/exec';
         const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY1O8HtkKPQ3P951arzUU8QV54xDtBdU7csF2CtM3hSWKcXWasHpcefkgYbDQ0w7XY/exec';
-        const PHOTOS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1oHVPjpqd9mqreMhPMJntl4IxFvPxMWBC7gp_u-qhLzosbsmgsDjClFWeCAmQvuFSJA/exec';
+        const PHOTOS_DATA_URL = 'photos.json';
         const PHOTO_REFRESH_MS = 3 * 60 * 1000;
         const PHOTO_SLIDESHOW_MS = 5000;
 
@@ -1531,41 +1531,24 @@
         };
 
         function loadPhotoGallery() {
-            if (!PHOTOS_SCRIPT_URL) {
-                handlePhotoGalleryError('Live gallery preview will appear here once connected. For now, open the shared album to view and upload photos.');
-                return;
-            }
-
             showPhotoGalleryState('loading');
             setPhotoGalleryStatus('Loading photos...');
             stopSlideshow();
 
-            var controller = new AbortController();
-            var timeoutId = window.setTimeout(function() {
-                controller.abort();
-            }, 45000);
-
-            fetch(PHOTOS_SCRIPT_URL, {
+            fetch(PHOTOS_DATA_URL + '?t=' + Date.now(), {
                 method: 'GET',
-                redirect: 'follow',
-                signal: controller.signal
+                cache: 'no-store'
             })
             .then(function(response) {
-                return response.text().then(function(text) {
-                    if (!response.ok ||
-                        text.indexOf('Access Denied') !== -1 ||
-                        text.indexOf('<!DOCTYPE html>') === 0) {
-                        throw new Error('proxy-unavailable');
-                    }
-                    return JSON.parse(text);
-                });
+                if (!response.ok) {
+                    throw new Error('photos-unavailable');
+                }
+                return response.json();
             })
             .then(function(data) {
-                window.clearTimeout(timeoutId);
                 handlePhotoGalleryData(data);
             })
             .catch(function() {
-                window.clearTimeout(timeoutId);
                 handlePhotoGalleryError('Unable to load the live gallery right now. Open the shared album below to view and upload photos.');
             });
         }
@@ -1574,7 +1557,6 @@
             if (photoGalleryState.refreshTimer) {
                 clearInterval(photoGalleryState.refreshTimer);
             }
-            if (!PHOTOS_SCRIPT_URL) return;
             photoGalleryState.refreshTimer = setInterval(loadPhotoGallery, PHOTO_REFRESH_MS);
         }
 
