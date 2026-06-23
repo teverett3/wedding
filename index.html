@@ -537,6 +537,149 @@
         .grid-dining {
             grid-template-columns: repeat(4, 1fr);
         }
+
+        /* Photo Gallery */
+        .photo-gallery-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-gallery-status {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #8b7d77;
+            font-weight: 300;
+        }
+
+        .photo-gallery-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #8b7d77;
+            border: 1px solid rgba(197, 170, 155, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(197, 170, 155, 0.15);
+            color: #4a4543;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 1px solid rgba(197, 170, 155, 0.3);
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(139, 125, 119, 0.18);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-item-meta {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 2.5rem 0.75rem 0.75rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-item-meta {
+            opacity: 1;
+        }
+
+        .photo-gallery-empty,
+        .photo-gallery-loading {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(197, 170, 155, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: #8b7d77;
+        }
+
+        .photo-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .photo-lightbox.open {
+            display: flex;
+        }
+
+        .photo-lightbox img {
+            max-width: min(100%, 1200px);
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .photo-lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .photo-lightbox-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 90%;
+        }
         
         @media (max-width: 1024px) {
             .grid-dining {
@@ -583,6 +726,7 @@
             <a href="#details" class="nav-link">Details</a>
             <a href="#travel" class="nav-link">Travel</a>
             <a href="#explore" class="nav-link">Explore</a>
+            <a href="#photos" class="nav-link">Photos</a>
             <a href="#faq" class="nav-link">FAQ</a>
         </div>
     </nav>
@@ -995,8 +1139,40 @@
         </div>
     </section>
 
+    <!-- Photos Section -->
+    <section id="photos" class="section-alt">
+        <div class="container">
+            <h2>Wedding Photos</h2>
+
+            <p class="section-intro">
+                Share your favorite moments from the weekend! Upload photos to our shared album and they'll appear here for everyone to enjoy.
+            </p>
+
+            <div class="photo-gallery-toolbar">
+                <div class="photo-gallery-status" id="photo-gallery-status">Loading photos...</div>
+                <div class="photo-gallery-actions">
+                    <a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">View &amp; Upload Photos</a>
+                    <button type="button" class="btn btn-outline" id="photo-refresh-btn">Refresh</button>
+                </div>
+            </div>
+
+            <div id="photo-gallery-loading" class="photo-gallery-loading">Loading the latest photos from our shared album...</div>
+            <div id="photo-gallery" class="photo-gallery" style="display: none;"></div>
+            <div id="photo-gallery-empty" class="photo-gallery-empty" style="display: none;">
+                <p style="margin-bottom: 1rem;">No photos yet — be the first to share a moment from the weekend!</p>
+                <a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">Open Shared Album</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="photo-lightbox" id="photo-lightbox" aria-hidden="true">
+        <button type="button" class="photo-lightbox-close" id="photo-lightbox-close" aria-label="Close">&times;</button>
+        <img id="photo-lightbox-image" src="" alt="">
+        <div class="photo-lightbox-caption" id="photo-lightbox-caption"></div>
+    </div>
+
     <!-- FAQ Section -->
-    <section id="faq" class="section-alt">
+    <section id="faq">
         <div class="container-narrow">
             <h2>Frequently Asked Questions</h2>
 
@@ -1045,6 +1221,146 @@
     <script>
         const SONG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAmln-zxgYIKaaLgSWF507Kk9U3q7xZ7VjE-iUrajP6WNG_EfVpbPCoMdTOFvwcg9ICQ/exec';
         const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY1O8HtkKPQ3P951arzUU8QV54xDtBdU7csF2CtM3hSWKcXWasHpcefkgYbDQ0w7XY/exec';
+        const PHOTOS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1oHVPjpqd9mqreMhPMJntl4IxFvPxMWBC7gp_u-qhLzosbsmgsDjClFWeCAmQvuFSJA/exec';
+        const PHOTO_REFRESH_MS = 3 * 60 * 1000;
+
+        var photoGalleryState = {
+            photos: [],
+            lastUpdated: null,
+            refreshTimer: null
+        };
+
+        function setPhotoGalleryStatus(message) {
+            document.getElementById('photo-gallery-status').textContent = message;
+        }
+
+        function showPhotoGalleryState(state) {
+            document.getElementById('photo-gallery-loading').style.display = state === 'loading' ? 'block' : 'none';
+            document.getElementById('photo-gallery').style.display = state === 'gallery' ? 'grid' : 'none';
+            document.getElementById('photo-gallery-empty').style.display = state === 'empty' ? 'block' : 'none';
+        }
+
+        function openPhotoLightbox(photo) {
+            var lightbox = document.getElementById('photo-lightbox');
+            var image = document.getElementById('photo-lightbox-image');
+            var caption = document.getElementById('photo-lightbox-caption');
+            image.src = photo.full || photo.thumb;
+            image.alt = photo.caption || 'Wedding photo';
+            caption.textContent = photo.contributor
+                ? 'Shared by ' + photo.contributor + (photo.caption ? ' — ' + photo.caption : '')
+                : (photo.caption || '');
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function closePhotoLightbox() {
+            var lightbox = document.getElementById('photo-lightbox');
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.getElementById('photo-lightbox-image').src = '';
+        }
+
+        function renderPhotoGallery(data) {
+            var gallery = document.getElementById('photo-gallery');
+            var photos = (data && data.photos) || [];
+
+            gallery.innerHTML = '';
+
+            if (!photos.length) {
+                showPhotoGalleryState('empty');
+                setPhotoGalleryStatus('No photos yet — upload the first one!');
+                return;
+            }
+
+            photos.forEach(function(photo) {
+                var item = document.createElement('button');
+                item.type = 'button';
+                item.className = 'photo-item';
+                item.setAttribute('aria-label', photo.caption || 'View wedding photo');
+
+                var image = document.createElement('img');
+                image.src = photo.thumb;
+                image.alt = photo.caption || 'Wedding photo';
+                image.loading = 'lazy';
+
+                item.appendChild(image);
+
+                if (photo.contributor) {
+                    var meta = document.createElement('div');
+                    meta.className = 'photo-item-meta';
+                    meta.textContent = photo.contributor;
+                    item.appendChild(meta);
+                }
+
+                item.addEventListener('click', function() {
+                    openPhotoLightbox(photo);
+                });
+
+                gallery.appendChild(item);
+            });
+
+            photoGalleryState.photos = photos;
+            photoGalleryState.lastUpdated = new Date();
+            showPhotoGalleryState('gallery');
+            setPhotoGalleryStatus(photos.length + ' photo' + (photos.length === 1 ? '' : 's') + ' • Updated ' + photoGalleryState.lastUpdated.toLocaleTimeString());
+        }
+
+        function handlePhotoGalleryError(message) {
+            showPhotoGalleryState('empty');
+            document.getElementById('photo-gallery-empty').innerHTML =
+                '<p style="margin-bottom: 1rem;">' + (message || 'Open our shared album to view and upload photos from the weekend.') + '</p>' +
+                '<a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">Open Shared Album</a>';
+            setPhotoGalleryStatus('Tap below to view and upload photos');
+        }
+
+        window.handlePhotoGalleryData = function(data) {
+            if (!data || data.error) {
+                handlePhotoGalleryError('Gallery preview is temporarily unavailable. You can still view and upload photos in our shared album.');
+                return;
+            }
+            renderPhotoGallery(data);
+        };
+
+        function loadPhotoGallery() {
+            if (!PHOTOS_SCRIPT_URL) {
+                handlePhotoGalleryError('Live gallery preview will appear here once connected. For now, open the shared album to view and upload photos.');
+                return;
+            }
+
+            showPhotoGalleryState('loading');
+            setPhotoGalleryStatus('Loading photos...');
+
+            var existing = document.getElementById('photo-gallery-script');
+            if (existing) {
+                existing.remove();
+            }
+
+            var script = document.createElement('script');
+            script.id = 'photo-gallery-script';
+            script.src = PHOTOS_SCRIPT_URL + (PHOTOS_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?') + 'callback=handlePhotoGalleryData';
+            script.onerror = handlePhotoGalleryError;
+            document.body.appendChild(script);
+        }
+
+        function schedulePhotoGalleryRefresh() {
+            if (photoGalleryState.refreshTimer) {
+                clearInterval(photoGalleryState.refreshTimer);
+            }
+            if (!PHOTOS_SCRIPT_URL) return;
+            photoGalleryState.refreshTimer = setInterval(loadPhotoGallery, PHOTO_REFRESH_MS);
+        }
+
+        document.getElementById('photo-refresh-btn').addEventListener('click', loadPhotoGallery);
+        document.getElementById('photo-lightbox-close').addEventListener('click', closePhotoLightbox);
+        document.getElementById('photo-lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closePhotoLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePhotoLightbox();
+        });
+
+        loadPhotoGallery();
+        schedulePhotoGalleryRefresh();
 
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
