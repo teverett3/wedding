@@ -2,11 +2,16 @@ name: Update wedding photos
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    # Hourly is more reliable than every 15 minutes on GitHub-hosted runners
+    - cron: '0 * * * *'
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: update-wedding-photos
+  cancel-in-progress: true
 
 jobs:
   update-photos:
@@ -23,8 +28,14 @@ jobs:
       - name: Fetch iCloud album
         run: node scripts/fetch-icloud-photos.js
 
-      - name: Commit photos.json
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: Update wedding photos from iCloud album
-          file_pattern: photos.json
+      - name: Commit and push photos.json
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add photos.json
+          if git diff --staged --quiet; then
+            echo "No photo changes to commit"
+            exit 0
+          fi
+          git commit -m "Update wedding photos from iCloud album"
+          git push
