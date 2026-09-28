@@ -325,6 +325,15 @@
             margin: 0 auto;
         }
         
+        .info-box a.btn {
+            color: white;
+            border-bottom: none;
+        }
+        
+        .info-box a.btn:hover {
+            opacity: 1;
+        }
+        
         /* Travel Cards */
         .travel-card {
             background: white;
@@ -537,6 +546,243 @@
         .grid-dining {
             grid-template-columns: repeat(4, 1fr);
         }
+
+        /* Photo Gallery */
+        .photo-gallery-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .photo-gallery-status {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            color: #8b7d77;
+            font-weight: 300;
+        }
+
+        .photo-gallery-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #8b7d77;
+            border: 1px solid rgba(197, 170, 155, 0.6);
+        }
+
+        .btn-outline:hover {
+            background: rgba(197, 170, 155, 0.15);
+            color: #4a4543;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .photo-slideshow {
+            position: relative;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(197, 170, 155, 0.3);
+            background: rgba(255, 255, 255, 0.5);
+            overflow: hidden;
+        }
+
+        .photo-slideshow-stage {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            max-height: 70vh;
+            cursor: pointer;
+        }
+
+        .photo-slideshow-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.5s ease;
+        }
+
+        .photo-slideshow-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(248, 246, 244, 0.9);
+            border: 1px solid rgba(197, 170, 155, 0.4);
+            color: #8b7d77;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.4rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 2;
+        }
+
+        .photo-slideshow-prev {
+            left: 1rem;
+        }
+
+        .photo-slideshow-next {
+            right: 1rem;
+        }
+
+        .photo-slideshow-nav:hover {
+            background: rgba(197, 170, 155, 0.35);
+        }
+
+        .photo-slideshow-info {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 3rem 1.25rem 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            pointer-events: none;
+        }
+
+        .photo-slideshow-caption {
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+
+        .photo-slideshow-counter {
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-top: 0.35rem;
+        }
+
+        .photo-gallery-thumbs-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #8b7d77;
+            margin-bottom: 0.75rem;
+        }
+
+        .photo-item {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            border: 1px solid rgba(197, 170, 155, 0.3);
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo-item.active {
+            border-color: #c5aa9b;
+            box-shadow: 0 0 0 2px #c5aa9b;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(139, 125, 119, 0.18);
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-item-meta {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 2.5rem 0.75rem 0.75rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-item-meta {
+            opacity: 1;
+        }
+
+        .photo-gallery-empty,
+        .photo-gallery-loading {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(197, 170, 155, 0.3);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            color: #8b7d77;
+        }
+
+        .photo-lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .photo-lightbox.open {
+            display: flex;
+        }
+
+        .photo-lightbox img {
+            max-width: min(100%, 1200px);
+            max-height: 90vh;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .photo-lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.8;
+        }
+
+        .photo-lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .photo-lightbox-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 90%;
+        }
         
         @media (max-width: 1024px) {
             .grid-dining {
@@ -570,6 +816,24 @@
             .grid-dining {
                 grid-template-columns: 1fr;
             }
+
+            .photo-slideshow-nav {
+                width: 2.25rem;
+                height: 2.25rem;
+                font-size: 1.1rem;
+            }
+
+            .photo-slideshow-prev {
+                left: 0.5rem;
+            }
+
+            .photo-slideshow-next {
+                right: 0.5rem;
+            }
+
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+            }
         }
     </style>
 </head>
@@ -579,11 +843,13 @@
         <div class="nav-logo">T & T</div>
         <div class="nav-links">
             <a href="#home" class="nav-link active">Home</a>
-            <a href="#rsvp" class="nav-link">RSVP</a>
+            <a href="#welcome" class="nav-link">Welcome</a>
             <a href="#details" class="nav-link">Details</a>
             <a href="#travel" class="nav-link">Travel</a>
             <a href="#explore" class="nav-link">Explore</a>
+            <a href="#photos" class="nav-link">Photos</a>
             <a href="#faq" class="nav-link">FAQ</a>
+            <a href="#rsvp" class="nav-link">RSVP</a>
         </div>
     </nav>
 
@@ -604,7 +870,7 @@
             <div class="hero-times">
                 <div class="time-block">
                     <div class="time-block-time">Oct 23</div>
-                    <div class="time-block-label">Welcome Event</div>
+                    <div class="time-block-label">Welcome Reception</div>
                 </div>
                 <div class="time-block">
                     <div class="time-block-time">Oct 24</div>
@@ -618,46 +884,24 @@
         </div>
     </section>
 
-    <!-- RSVP Section -->
-    <section id="rsvp" class="section-alt">
+    <!-- Welcome Reception Section -->
+    <section id="welcome" class="section-alt">
         <div class="container-narrow">
-            <h2>RSVP</h2>
+            <h2>Welcome Reception</h2>
             <p class="section-intro">
-                Formal invitations are on the way, but if you already know you're coming, we'd love to hear from you early! You can also update your response later.
+                Kick off the wedding weekend with us in downtown Montauk — cocktails, toasts, and dinner bites before an optional pub crawl through town.
             </p>
 
-            <div class="info-box" id="rsvp-box">
-                <form id="rsvp-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Your Name</label>
-                        <input type="text" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="First & Last Name">
+            <div class="info-box">
+                <div style="max-width: 560px; margin: 0 auto;">
+                    <p style="font-size: 1.35rem; color: #4a4543; margin-bottom: 0.5rem;">Friday, October 23, 2026</p>
+                    <p style="font-size: 1.8rem; color: #c5aa9b; margin-bottom: 1.25rem;">5:00 – 7:00 PM</p>
+                    <p style="font-size: 1.15rem; color: #6b6360; font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.8; margin-bottom: 0.75rem;"><strong style="color: #4a4543;">The Bird on the Roof</strong><br>47 Selwood Ave · Montauk, NY</p>
+                    <p style="font-size: 1.05rem; color: #6b6360; font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.8; margin-bottom: 2rem;">Join us for the welcome reception — our official start to the weekend. Afterward, keep the celebration going on a walkable pub crawl (~1.2 miles) with stops across Montauk.</p>
+                    <div style="text-align: center; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;">
+                        <a href="docs/montauk-pub-crawl.pdf" target="_blank" rel="noopener noreferrer" class="btn">View Pub Crawl Map (PDF)</a>
                     </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Will you be attending?</label>
-                        <select name="attending" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;">
-                            <option value="">Select one</option>
-                            <option value="Yes">Yes — can't wait!</option>
-                            <option value="No">Sadly, I can't make it</option>
-                        </select>
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Plus One Name (if applicable)</label>
-                        <input type="text" name="plusone" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Guest name (optional)">
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Dietary Restrictions</label>
-                        <input type="text" name="dietary" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Any allergies or dietary needs (optional)">
-                    </div>
-                    <div style="margin-bottom: 1.5rem;">
-                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Notes</label>
-                        <textarea name="notes" rows="3" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none; resize: vertical;" placeholder="Anything else you'd like us to know (optional)"></textarea>
-                    </div>
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn">Submit RSVP</button>
-                    </div>
-                </form>
-                <p id="rsvp-success" style="display: none; margin-top: 1.5rem; color: #8b7d77; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem;">We got your RSVP — thank you! We can't wait to celebrate with you. 🤍</p>
-                <p id="rsvp-error" style="display: none; margin-top: 1.5rem; color: #c27070; font-family: 'Montserrat', sans-serif; font-weight: 300;">Something went wrong — please try again or email us directly.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -995,8 +1239,59 @@
         </div>
     </section>
 
+    <!-- Photos Section -->
+    <section id="photos" class="section-alt">
+        <div class="container">
+            <h2>Wedding Photos</h2>
+
+            <p class="section-intro">
+                Share your favorite moments from the weekend! Upload photos to our shared album and they'll appear here for everyone to enjoy.
+            </p>
+
+            <div class="photo-gallery-toolbar">
+                <div class="photo-gallery-status" id="photo-gallery-status">Loading photos...</div>
+                <div class="photo-gallery-actions">
+                    <a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">View &amp; Upload Photos</a>
+                    <button type="button" class="btn btn-outline" id="photo-refresh-btn">Refresh</button>
+                </div>
+            </div>
+
+            <div id="photo-gallery-loading" class="photo-gallery-loading">Loading the latest photos from our shared album...</div>
+
+            <div id="photo-gallery-content" style="display: none;">
+                <div class="photo-slideshow" id="photo-slideshow">
+                    <div class="photo-slideshow-stage" id="photo-slideshow-stage">
+                        <img id="photo-slideshow-image" class="photo-slideshow-image" src="" alt="">
+                        <button type="button" class="photo-slideshow-nav photo-slideshow-prev" id="photo-slideshow-prev" aria-label="Previous photo">&#8249;</button>
+                        <button type="button" class="photo-slideshow-nav photo-slideshow-next" id="photo-slideshow-next" aria-label="Next photo">&#8250;</button>
+                        <div class="photo-slideshow-info">
+                            <div class="photo-slideshow-caption" id="photo-slideshow-caption"></div>
+                            <div class="photo-slideshow-counter" id="photo-slideshow-counter"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="photo-gallery-thumbs-wrap" style="display: none;">
+                    <div class="photo-gallery-thumbs-label">All Photos</div>
+                    <div id="photo-gallery" class="photo-gallery"></div>
+                </div>
+            </div>
+
+            <div id="photo-gallery-empty" class="photo-gallery-empty" style="display: none;">
+                <p style="margin-bottom: 1rem;">No photos yet — be the first to share a moment from the weekend!</p>
+                <a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">Open Shared Album</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="photo-lightbox" id="photo-lightbox" aria-hidden="true">
+        <button type="button" class="photo-lightbox-close" id="photo-lightbox-close" aria-label="Close">&times;</button>
+        <img id="photo-lightbox-image" src="" alt="">
+        <div class="photo-lightbox-caption" id="photo-lightbox-caption"></div>
+    </div>
+
     <!-- FAQ Section -->
-    <section id="faq" class="section-alt">
+    <section id="faq">
         <div class="container-narrow">
             <h2>Frequently Asked Questions</h2>
 
@@ -1035,6 +1330,50 @@
         </div>
     </section>
 
+    <!-- RSVP Section -->
+    <section id="rsvp" class="section-alt">
+        <div class="container-narrow">
+            <h2>RSVP</h2>
+            <p class="section-intro">
+                Formal invitations are on the way, but if you already know you're coming, we'd love to hear from you early! You can also update your response later.
+            </p>
+
+            <div class="info-box" id="rsvp-box">
+                <form id="rsvp-form" style="max-width: 500px; margin: 0 auto; text-align: left;">
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Your Name</label>
+                        <input type="text" name="name" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="First & Last Name">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Will you be attending?</label>
+                        <select name="attending" required style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;">
+                            <option value="">Select one</option>
+                            <option value="Yes">Yes — can't wait!</option>
+                            <option value="No">Sadly, I can't make it</option>
+                        </select>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Plus One Name (if applicable)</label>
+                        <input type="text" name="plusone" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Guest name (optional)">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Dietary Restrictions</label>
+                        <input type="text" name="dietary" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none;" placeholder="Any allergies or dietary needs (optional)">
+                    </div>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; letter-spacing: 0.05em; color: #8b7d77; margin-bottom: 0.4rem;">Notes</label>
+                        <textarea name="notes" rows="3" style="width: 100%; padding: 0.75rem 1rem; border: 1px solid rgba(197, 170, 155, 0.4); background: rgba(255,255,255,0.8); font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #4a4543; outline: none; resize: vertical;" placeholder="Anything else you'd like us to know (optional)"></textarea>
+                    </div>
+                    <div style="text-align: center;">
+                        <button type="submit" class="btn">Submit RSVP</button>
+                    </div>
+                </form>
+                <p id="rsvp-success" style="display: none; margin-top: 1.5rem; color: #8b7d77; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 1.1rem;">We got your RSVP — thank you! We can't wait to celebrate with you. 🤍</p>
+                <p id="rsvp-error" style="display: none; margin-top: 1.5rem; color: #c27070; font-family: 'Montserrat', sans-serif; font-weight: 300;">Something went wrong — please try again or email us directly.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-logo">T & T</div>
@@ -1045,6 +1384,263 @@
     <script>
         const SONG_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyAmln-zxgYIKaaLgSWF507Kk9U3q7xZ7VjE-iUrajP6WNG_EfVpbPCoMdTOFvwcg9ICQ/exec';
         const RSVP_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY1O8HtkKPQ3P951arzUU8QV54xDtBdU7csF2CtM3hSWKcXWasHpcefkgYbDQ0w7XY/exec';
+        const PHOTOS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby1oHVPjpqd9mqreMhPMJntl4IxFvPxMWBC7gp_u-qhLzosbsmgsDjClFWeCAmQvuFSJA/exec';
+        const PHOTO_REFRESH_MS = 3 * 60 * 1000;
+        const PHOTO_SLIDESHOW_MS = 5000;
+
+        var photoGalleryState = {
+            photos: [],
+            currentIndex: 0,
+            lastUpdated: null,
+            refreshTimer: null,
+            slideshowTimer: null,
+            slideshowPaused: false
+        };
+
+        function setPhotoGalleryStatus(message) {
+            document.getElementById('photo-gallery-status').textContent = message;
+        }
+
+        function showPhotoGalleryState(state) {
+            document.getElementById('photo-gallery-loading').style.display = state === 'loading' ? 'block' : 'none';
+            document.getElementById('photo-gallery-content').style.display = state === 'gallery' ? 'block' : 'none';
+            document.getElementById('photo-gallery-empty').style.display = state === 'empty' ? 'block' : 'none';
+        }
+
+        function stopSlideshow() {
+            if (photoGalleryState.slideshowTimer) {
+                clearInterval(photoGalleryState.slideshowTimer);
+                photoGalleryState.slideshowTimer = null;
+            }
+        }
+
+        function startSlideshow() {
+            stopSlideshow();
+            if (photoGalleryState.photos.length <= 1 || photoGalleryState.slideshowPaused) return;
+            photoGalleryState.slideshowTimer = setInterval(function() {
+                goToSlide(photoGalleryState.currentIndex + 1, false);
+            }, PHOTO_SLIDESHOW_MS);
+        }
+
+        function updateSlideshowUI() {
+            var photos = photoGalleryState.photos;
+            if (!photos.length) return;
+
+            var photo = photos[photoGalleryState.currentIndex];
+            var image = document.getElementById('photo-slideshow-image');
+            var caption = document.getElementById('photo-slideshow-caption');
+            var counter = document.getElementById('photo-slideshow-counter');
+            var showNav = photos.length > 1;
+
+            image.style.opacity = '0';
+            window.setTimeout(function() {
+                image.src = photo.full || photo.thumb;
+                image.alt = photo.caption || 'Wedding photo';
+                image.onload = function() {
+                    image.style.opacity = '1';
+                };
+                if (image.complete) {
+                    image.style.opacity = '1';
+                }
+            }, 200);
+
+            caption.textContent = photo.contributor
+                ? 'Shared by ' + photo.contributor + (photo.caption ? ' — ' + photo.caption : '')
+                : (photo.caption || '');
+            counter.textContent = (photoGalleryState.currentIndex + 1) + ' of ' + photos.length;
+
+            document.getElementById('photo-slideshow-prev').style.display = showNav ? 'flex' : 'none';
+            document.getElementById('photo-slideshow-next').style.display = showNav ? 'flex' : 'none';
+
+            var thumbs = document.querySelectorAll('.photo-item');
+            thumbs.forEach(function(thumb, index) {
+                thumb.classList.toggle('active', index === photoGalleryState.currentIndex);
+            });
+        }
+
+        function goToSlide(index, restartTimer) {
+            var photos = photoGalleryState.photos;
+            if (!photos.length) return;
+
+            if (index < 0) {
+                index = photos.length - 1;
+            } else if (index >= photos.length) {
+                index = 0;
+            }
+
+            photoGalleryState.currentIndex = index;
+            updateSlideshowUI();
+
+            if (restartTimer !== false) {
+                startSlideshow();
+            }
+        }
+
+        function openPhotoLightbox(photo) {
+            var lightbox = document.getElementById('photo-lightbox');
+            var image = document.getElementById('photo-lightbox-image');
+            var caption = document.getElementById('photo-lightbox-caption');
+            stopSlideshow();
+            image.src = photo.full || photo.thumb;
+            image.alt = photo.caption || 'Wedding photo';
+            caption.textContent = photo.contributor
+                ? 'Shared by ' + photo.contributor + (photo.caption ? ' — ' + photo.caption : '')
+                : (photo.caption || '');
+            lightbox.classList.add('open');
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function closePhotoLightbox() {
+            var lightbox = document.getElementById('photo-lightbox');
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+            document.getElementById('photo-lightbox-image').src = '';
+            startSlideshow();
+        }
+
+        function renderPhotoGallery(data) {
+            var gallery = document.getElementById('photo-gallery');
+            var photos = (data && data.photos) || [];
+
+            gallery.innerHTML = '';
+            stopSlideshow();
+
+            if (!photos.length) {
+                showPhotoGalleryState('empty');
+                setPhotoGalleryStatus('No photos yet — upload the first one!');
+                return;
+            }
+
+            photoGalleryState.photos = photos;
+            photoGalleryState.currentIndex = 0;
+
+            photos.forEach(function(photo, index) {
+                var item = document.createElement('button');
+                item.type = 'button';
+                item.className = 'photo-item';
+                item.setAttribute('aria-label', photo.caption || 'View wedding photo');
+
+                var image = document.createElement('img');
+                image.src = photo.thumb;
+                image.alt = photo.caption || 'Wedding photo';
+                image.loading = 'lazy';
+
+                item.appendChild(image);
+
+                item.addEventListener('click', function() {
+                    goToSlide(index);
+                });
+
+                gallery.appendChild(item);
+            });
+
+            document.getElementById('photo-gallery-thumbs-wrap').style.display = photos.length > 1 ? 'block' : 'none';
+
+            updateSlideshowUI();
+            photoGalleryState.lastUpdated = new Date();
+            showPhotoGalleryState('gallery');
+            setPhotoGalleryStatus(photos.length + ' photo' + (photos.length === 1 ? '' : 's') + ' • Updated ' + photoGalleryState.lastUpdated.toLocaleTimeString());
+            startSlideshow();
+        }
+
+        function handlePhotoGalleryError(message) {
+            stopSlideshow();
+            showPhotoGalleryState('empty');
+            var text = (typeof message === 'string' && message) ||
+                'Open our shared album to view and upload photos from the weekend.';
+            document.getElementById('photo-gallery-empty').innerHTML =
+                '<p style="margin-bottom: 1rem;">' + text + '</p>' +
+                '<a href="https://www.icloud.com/sharedalbum/#B1jJqstnBJ83b3x" target="_blank" rel="noopener noreferrer" class="btn">Open Shared Album</a>';
+            setPhotoGalleryStatus('Tap below to view and upload photos');
+        }
+
+        window.handlePhotoGalleryData = function(data) {
+            if (!data || data.error) {
+                handlePhotoGalleryError('Gallery preview is temporarily unavailable. You can still view and upload photos in our shared album.');
+                return;
+            }
+            renderPhotoGallery(data);
+        };
+
+        function loadPhotoGallery() {
+            if (!PHOTOS_SCRIPT_URL) {
+                handlePhotoGalleryError('Live gallery preview will appear here once connected. For now, open the shared album to view and upload photos.');
+                return;
+            }
+
+            showPhotoGalleryState('loading');
+            setPhotoGalleryStatus('Loading photos...');
+            stopSlideshow();
+
+            var controller = new AbortController();
+            var timeoutId = window.setTimeout(function() {
+                controller.abort();
+            }, 45000);
+
+            fetch(PHOTOS_SCRIPT_URL, {
+                method: 'GET',
+                redirect: 'follow',
+                signal: controller.signal
+            })
+            .then(function(response) {
+                return response.text().then(function(text) {
+                    if (!response.ok ||
+                        text.indexOf('Access Denied') !== -1 ||
+                        text.indexOf('<!DOCTYPE html>') === 0) {
+                        throw new Error('proxy-unavailable');
+                    }
+                    return JSON.parse(text);
+                });
+            })
+            .then(function(data) {
+                window.clearTimeout(timeoutId);
+                handlePhotoGalleryData(data);
+            })
+            .catch(function() {
+                window.clearTimeout(timeoutId);
+                handlePhotoGalleryError('Unable to load the live gallery right now. Open the shared album below to view and upload photos.');
+            });
+        }
+
+        function schedulePhotoGalleryRefresh() {
+            if (photoGalleryState.refreshTimer) {
+                clearInterval(photoGalleryState.refreshTimer);
+            }
+            if (!PHOTOS_SCRIPT_URL) return;
+            photoGalleryState.refreshTimer = setInterval(loadPhotoGallery, PHOTO_REFRESH_MS);
+        }
+
+        document.getElementById('photo-refresh-btn').addEventListener('click', loadPhotoGallery);
+        document.getElementById('photo-slideshow-prev').addEventListener('click', function(e) {
+            e.stopPropagation();
+            goToSlide(photoGalleryState.currentIndex - 1);
+        });
+        document.getElementById('photo-slideshow-next').addEventListener('click', function(e) {
+            e.stopPropagation();
+            goToSlide(photoGalleryState.currentIndex + 1);
+        });
+        document.getElementById('photo-slideshow-stage').addEventListener('click', function() {
+            var photo = photoGalleryState.photos[photoGalleryState.currentIndex];
+            if (photo) openPhotoLightbox(photo);
+        });
+        document.getElementById('photo-slideshow').addEventListener('mouseenter', function() {
+            photoGalleryState.slideshowPaused = true;
+            stopSlideshow();
+        });
+        document.getElementById('photo-slideshow').addEventListener('mouseleave', function() {
+            photoGalleryState.slideshowPaused = false;
+            startSlideshow();
+        });
+        document.getElementById('photo-lightbox-close').addEventListener('click', closePhotoLightbox);
+        document.getElementById('photo-lightbox').addEventListener('click', function(e) {
+            if (e.target === this) closePhotoLightbox();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closePhotoLightbox();
+        });
+
+        loadPhotoGallery();
+        schedulePhotoGalleryRefresh();
 
         document.getElementById('rsvp-form').addEventListener('submit', function(e) {
             e.preventDefault();
