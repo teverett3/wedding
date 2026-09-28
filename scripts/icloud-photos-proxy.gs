@@ -6,8 +6,10 @@
  * 2. Paste this entire file
  * 3. Deploy → New deployment → Web app
  *    - Execute as: Me
- *    - Who has access: Anyone
+ *    - Who has access: Anyone  (NOT "Anyone with Google account")
  * 4. Copy the deployment URL into PHOTOS_SCRIPT_URL in index.html
+ * 5. Open the deployment URL once in your browser while signed in to Google
+ *    and approve permissions when prompted
  */
 
 const ALBUM_TOKEN = 'B1jJqstnBJ83b3x';
